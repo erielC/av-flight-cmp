@@ -29,13 +29,13 @@ void loop()
   GyX = Wire.read() << 8 | Wire.read(); // 0x43 (GYRO_XOUT_H) & 0x44 (GYRO_XOUT_L)
   GyY = Wire.read() << 8 | Wire.read(); // 0x45 (GYRO_YOUT_H) & 0x46 (GYRO_YOUT_L)
   GyZ = Wire.read() << 8 | Wire.read(); // 0x47 (GYRO_ZOUT_H) & 0x48 (GYRO_ZOUT_L)
-  if (AcX < 0)
-  {
-    digitalWrite(LED_BUILTIN, HIGH); // turn the LED on (HIGH is the voltage level)
-    delay(50);                       // wait for a second
-    digitalWrite(LED_BUILTIN, LOW);  // turn the LED off by making the voltage LOW
-    delay(50);
-  }
+  // if (AcX < 0)
+  // {
+  //   digitalWrite(LED_BUILTIN, HIGH); // turn the LED on (HIGH is the voltage level)
+  //   delay(50);                       // wait for a second
+  //   digitalWrite(LED_BUILTIN, LOW);  // turn the LED off by making the voltage LOW
+  //   delay(50);
+  // }
   Serial.print(" | AcX = ");
   Serial.println(AcX);
   Serial.print(" | AcY = ");
