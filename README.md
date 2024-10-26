@@ -9,12 +9,11 @@ SEDS Avionics Team Flight Computer 24'-25' Season\
   <li><a href="https://github.com/stm32duino/ASM330LHH/tree/main" target="_blank">ASM330 Main IMU</a></li>
   <li><a href="https://github.com/boschsensortec/BMI323_SensorAPI" target="_blank">BMI323 Secondary IMU</a></li>
   <li><a href="" target="_blank">HTU21D (needs to be verified see links below)</a></li>
-
+</ul>
   https://github.com/adafruit/Adafruit_HTU21DF_Library/tree/master
   https://github.com/ncdcommunity/Arduino_Library_HTU20D_Humidity_Temperature_Sensor
-  https://github.com/sparkfun/SparkFun_HTU21D_Breakout_Arduino_Library
-  
-</ul>
+  https://github.com/sparkfun/SparkFun_HTU21D_Breakout_Arduino_Library  
+
 <br/>
 <h4>10.21.24</h4>
 <br/>
