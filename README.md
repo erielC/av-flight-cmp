@@ -12,7 +12,7 @@ Objectives:
   <li>Be able to store them locally on computer to work with no internet and be able to boot up on any computer</li>
 </ul>
 <br/>
-**10.26.24**
+<strong>10.26.24</strong>
 <br/>
 Completed: 
 <ul>
