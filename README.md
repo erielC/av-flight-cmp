@@ -11,7 +11,9 @@ SEDS Avionics Team Flight Computer 24'-25' Season\
   <li><a href="" target="_blank">HTU21D (needs to be verified see links below)</a></li>
 </ul>
   https://github.com/adafruit/Adafruit_HTU21DF_Library/tree/master
+  <br/>
   https://github.com/ncdcommunity/Arduino_Library_HTU20D_Humidity_Temperature_Sensor
+  <br/>
   https://github.com/sparkfun/SparkFun_HTU21D_Breakout_Arduino_Library  
 
 <br/>
