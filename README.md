@@ -4,11 +4,15 @@ SEDS Avionics Team Flight Computer 24'-25' Season\
 <h3>Sensor Libraries Directory:</h3>
 <ul>
   <li><a href="https://github.com/sparkfun/SparkFun_MMC5983MA_Magnetometer_Arduino_Library/tree/main" target="_blank">MMC5983 Magnetometer</a></li>
-  <li><a href="https://github.com/sosandroid/FRAM_MB85RC_I2C">MB85RC FRAM</a></li>
-  <li><a href="https://github.com/libdriver/bmp390?tab=readme-ov-file#Install">BMP390 Barometer</a></li>
-  <li><a href="https://github.com/stm32duino/ASM330LHH/tree/main">ASM330 Main IMU</a></li>
-  <li><a href="https://github.com/boschsensortec/BMI323_SensorAPI">BMI323 Secondary IMU</a></li>
-  <li><a href="">HTU21D (needs to be verified see links below)</a></li>
+  <li><a href="https://github.com/sosandroid/FRAM_MB85RC_I2C" target="_blank">MB85RC FRAM</a></li>
+  <li><a href="https://github.com/libdriver/bmp390?tab=readme-ov-file#Install" target="_blank">BMP390 Barometer</a></li>
+  <li><a href="https://github.com/stm32duino/ASM330LHH/tree/main" target="_blank">ASM330 Main IMU</a></li>
+  <li><a href="https://github.com/boschsensortec/BMI323_SensorAPI" target="_blank">BMI323 Secondary IMU</a></li>
+  <li><a href="" target="_blank">HTU21D (needs to be verified see links below)</a></li>
+
+  https://github.com/adafruit/Adafruit_HTU21DF_Library/tree/master
+  https://github.com/ncdcommunity/Arduino_Library_HTU20D_Humidity_Temperature_Sensor
+  https://github.com/sparkfun/SparkFun_HTU21D_Breakout_Arduino_Library
   
 </ul>
 <br/>
