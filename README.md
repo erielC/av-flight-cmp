@@ -1,6 +1,8 @@
 # av-flight-cmp
+
 SEDS Avionics Team Flight Computer 24'-25' Season\
 <br/>
+
 <h3>Sensor Libraries Directory:</h3>
 <ul>
   <li><a href="https://github.com/sparkfun/SparkFun_MMC5983MA_Magnetometer_Arduino_Library/tree/main" target="_blank">MMC5983 Magnetometer</a></li>
@@ -12,7 +14,7 @@ SEDS Avionics Team Flight Computer 24'-25' Season\
 </ul>
   https://github.com/adafruit/Adafruit_HTU21DF_Library/tree/master
   <br/>
-  https://github.com/sparkfun/SparkFun_HTU21D_Breakout_Arduino_Library  
+  https://github.com/sparkfun/SparkFun_HTU21D_Breakout_Arduino_Library
 
 <br/>
 <h4>10.21.24</h4>
