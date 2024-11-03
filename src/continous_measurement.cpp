@@ -14,6 +14,8 @@ double scaledY = 0;
 double scaledZ = 0;
 double heading = 0;
 
+void interruptRoutine();
+
 void setup()
 {
   Serial.begin(115200);
