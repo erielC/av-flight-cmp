@@ -1,6 +1,6 @@
 #include <Wire.h>
 
-#include <SparkFun_MMC5983MA_Arduino_Library.h> 
+#include <SparkFun_MMC5983MA_Arduino_Library.h>
 
 SFE_MMC5983MA myMag;
 
