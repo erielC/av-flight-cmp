@@ -15,8 +15,13 @@ SEDS Avionics Team Flight Computer 24'-25' Season\
   The sparkfun Humidity sensor library can be used if the adafruit one proves to be too tedious so link will remain here.
   <br/>
   https://github.com/sparkfun/SparkFun_HTU21D_Breakout_Arduino_Library
-
 <br/>
+
+<h3>Tips for Setting up platform.IO</h3>
+<ul>
+  <li>Make sure that there is only ONE .cpp file in your source file when you compile because if you have more .cpp and they contain the setup() & loop() functions then it will get confused and return an error.</li>
+  <li>If files need to be stored</li>
+</ul>
 <h4>10.21.24</h4>
 <br/>
 Creation of the github repository for testing git commands, version control source code.
