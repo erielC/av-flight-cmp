@@ -1,4 +1,4 @@
-// gauss measurement
+// gauss measurement via obejct call
 
 #include <Arduino.h>
 #include <Wire.h>
