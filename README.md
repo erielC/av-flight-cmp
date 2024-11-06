@@ -10,7 +10,7 @@ SEDS Avionics Team Flight Computer 24'-25' Season\
   <li><a href="https://github.com/libdriver/bmp390?tab=readme-ov-file#Install" target="_blank">BMP390 Barometer</a></li>
   <li><a href="https://github.com/stm32duino/ASM330LHH/tree/main" target="_blank">ASM330 Main IMU</a></li>
   <li><a href="https://github.com/boschsensortec/BMI323_SensorAPI" target="_blank">BMI323 Secondary IMU</a></li>
-  <li><a href="https://github.com/adafruit/Adafruit_HTU21DF_Library/tree/master" target="_blank">HTU21D</a></li>
+  <li><a href="https://github.com/adafruit/Adafruit_HTU21DF_Library/tree/master" target="_blank">HTU21D Humidity & Temperature Sensor</a></li>
 </ul>
   The sparkfun Humidity sensor library can be used if the adafruit one proves to be too tedious so link will remain here.
   <br/>
