@@ -5,7 +5,7 @@ SEDS Avionics Team Flight Computer 24'-25' Season
 
 This repository is the Vinson main flight computer code for the arduino nano that will be guiding the rocket, the other two repositories linked below are the test STM chip under development and the rover computer (ESP-32). 
 <ul>
-  <li><a href="" target="_blank"></a></li>
+  <li><a href="https://github.com/erielC/av-rover-cmp/tree/main" target="_blank">Rover Computer Repo</a></li>
 </ul>
 <br/>
 <h3>Sensor Libraries Directory:</h3>
