@@ -1,6 +1,6 @@
 # av-flight-cmp
 
-SEDS Avionics Team Flight Computer 24'-25' Season\
+SEDS Avionics Team Flight Computer 24'-25' Season
 <br/>
 
 <h3>Sensor Libraries Directory:</h3>
