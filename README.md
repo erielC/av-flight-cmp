@@ -3,7 +3,7 @@
 SEDS Avionics Team Flight Computer 24'-25' Season
 <br/>
 
-This repository is the Vinson main flight computer code that will be guiding the rocket, the other two repositories linked below are the test STM chip under development and the rover computer (ESP-32). 
+This repository is the Vinson main flight computer code for the arduino nano that will be guiding the rocket, the other two repositories linked below are the test STM chip under development and the rover computer (ESP-32). 
 <ul>
   <li><a href="" target="_blank"></a></li>
 </ul>
