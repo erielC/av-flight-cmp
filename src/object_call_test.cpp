@@ -10,7 +10,7 @@
   magnetometer object:
 
   magnetometer.initialTempCheck();
-  magnetometer.monitorTemp();
+  magnetometer.readTemperature();
   magnetometer.verifyConnection(MAGNETOMETER_ADDRESS);
   magnetometer.getGaussMeasurement();
   
@@ -72,7 +72,7 @@ void loop()
     lastMeasurementTime = millis();
 
     // Perform measurements
-    magnetometer.monitorTemp();
+    magnetometer.readTemperature();
     magnetometer.verifyConnection(MAGNETOMETER_ADDRESS);
   }
 
