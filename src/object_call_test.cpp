@@ -13,7 +13,7 @@
   magnetometer.readTemperature();
   magnetometer.verifyConnection(MAGNETOMETER_ADDRESS);
   magnetometer.getGaussMeasurement();
-  
+
 */
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -59,7 +59,7 @@ void setup()
   magnetometer.softReset();
   Serial.println("MMC5983MA is connected and ready");
 
-  magnetometer.initialTempCheck();
+  magnetometer.readInitialTemperature();
   magnetometer.verifyConnection(MAGNETOMETER_ADDRESS);
 }
 
