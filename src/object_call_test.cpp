@@ -9,7 +9,7 @@
 /* @erielC
   magnetometer object:
 
-  magnetometer.initialTempCheck();
+  magnetometer.readInitialTemperature();
   magnetometer.readTemperature();
   magnetometer.verifyConnection(MAGNETOMETER_ADDRESS);
   magnetometer.getGaussMeasurement();
