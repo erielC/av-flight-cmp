@@ -10,7 +10,7 @@ This repository is the Vinson main flight computer code for the arduino nano tha
 <br/>
 <h3>Sensor Libraries Directory:</h3>
 <ul>
-  <li><a href="https://github.com/sparkfun/SparkFun_MMC5983MA_Magnetometer_Arduino_Library/tree/main" target="_blank">MMC5983 Magnetometer</a></li>
+  <li><a href="https://github.com/sparkfun/SparkFun_MMC5983MA_Magnetometer_Arduino_Library/tree/main" target="_blank">MMC5983 Magnetometer</a></liobject_call_test>
   <li><a href="https://github.com/sosandroid/FRAM_MB85RC_I2C" target="_blank">MB85RC FRAM</a></li>
   <li><a href="https://github.com/libdriver/bmp390?tab=readme-ov-file#Install" target="_blank">BMP390 Barometer</a></li>
   <li><a href="https://github.com/stm32duino/ASM330LHH/tree/main" target="_blank">ASM330 Main IMU</a></li>
@@ -29,26 +29,8 @@ This repository is the Vinson main flight computer code for the arduino nano tha
   <li>Unless your testing the code DO NOT place anything inside the test folder</li>
   <li>Any header files that you have written place them into the include folder as platformIO determines that's where the header files go</li>
 </ul>
-<h4>10.21.24</h4>
-<br/>
-Creation of the github repository for testing git commands, version control source code.
-<br/>
-Objectives:
+<h4>I2C Addresses for Sensors:</h4>
 <ul>
-  <li>Understand how arduino/sensor libraries work</li>
-  <li>Be able to store them locally on computer to work with no internet and be able to boot up on any computer</li>
-</ul>
-<br/>
-<h4>10.26.24</h4>
-<br/>
-Completed: 
-<ul>
-  <li>Was able to store them locally on computer with no internet and able to boot them up on any computer as long as it has VSCode extension platformIO</li>
-  <li>Found all the libraries for the sensors that are on custom PCB</li>
-</ul>
-<br>
-Objectives:
-<ul>
-  <li>Use a budget camera capble of recording/taking photos</li>
-  <li>Familiarize with the code of camera and how to store the data on SD card</li>
+  <li>ASM330: 0x6A</li>
+  <li>Magnetometer: 0x30</li>
 </ul>
