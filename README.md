@@ -29,26 +29,9 @@ This repository is the Vinson main flight computer code for the arduino nano tha
   <li>Unless your testing the code DO NOT place anything inside the test folder</li>
   <li>Any header files that you have written place them into the include folder as platformIO determines that's where the header files go</li>
 </ul>
-<h4>10.21.24</h4>
-<br/>
-Creation of the github repository for testing git commands, version control source code.
-<br/>
-Objectives:
+<h4>Sensor I2C Addresses:</h4>
 <ul>
-  <li>Understand how arduino/sensor libraries work</li>
-  <li>Be able to store them locally on computer to work with no internet and be able to boot up on any computer</li>
-</ul>
-<br/>
-<h4>10.26.24</h4>
-<br/>
-Completed: 
-<ul>
-  <li>Was able to store them locally on computer with no internet and able to boot them up on any computer as long as it has VSCode extension platformIO</li>
-  <li>Found all the libraries for the sensors that are on custom PCB</li>
-</ul>
-<br>
-Objectives:
-<ul>
-  <li>Use a budget camera capble of recording/taking photos</li>
-  <li>Familiarize with the code of camera and how to store the data on SD card</li>
+  <li>ASM330: 0x6A</li>
+  <li>Magnetometer: 0x30</li>
+  <li>BMP280: 0x76</li>
 </ul>
