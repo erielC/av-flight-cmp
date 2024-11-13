@@ -18,3 +18,5 @@ SEDS Avionics Sensor: ASM330 Main IMU
   <li>Get the program to parse data and format it in a readble way</li>
   <li>Figure out a way to store data from the sensor (.txt file)</li>
 </ul>
+<h4>Wiring Diagram Schematic</h4>
+![ASM330_Wiring_Diagram](https://github.com/user-attachments/assets/08a4da38-90d2-46dd-91a4-b4015cfabe34)
