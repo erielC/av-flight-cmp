@@ -1,6 +1,6 @@
 # av-flight-cmp
 
-
+SEDS State Machine
 
 SEDS Avionics Sensor: ASM330 Main IMU
 <br/>
