@@ -1162,7 +1162,7 @@ void SFE_MMC5983MA::readTemperature()
     }
 }
 
-void SFE_MMC5983MA::getGaussMeasurement()
+void SFE_MMC5983MA::readGaussMeasurement()
 {
     uint32_t currentX = 0;
     uint32_t currentY = 0;
