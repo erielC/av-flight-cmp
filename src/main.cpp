@@ -9,9 +9,9 @@ enum RocketState
   BOOST,         // Rocket boost phase
   COAST,         // Post-boost, coasting to apogee
   APOGEE,
-  DROUGE_DEPLOY,
-  MAIN_DEPLOY, // Descent phase (includes drogue and main parachutes)
-  LANDED,      // Final state after landing
+  DROGUE_DEPLOY, // Descent phase (includes drogue parachutes)
+  MAIN_DEPLOY,   // Descent phase (includes main parachutes)
+  LANDED,        // Final state after landing
 };
 
 // Declare the initial state variable
