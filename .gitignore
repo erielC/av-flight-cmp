@@ -5,4 +5,4 @@
 .vscode/ipch
 .pio/build/*
 .pio/build/megaatmega2560/idedata.json
-.pio/build/project.checksum
+.pio\build\project.checksum
