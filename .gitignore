@@ -1,8 +1,9 @@
+.vscode/*
 .vscode/.browse.c_cpp.db*
 .vscode/extensions.json
 .vscode/c_cpp_properties.json
 .vscode/launch.json
 .vscode/ipch
-.pio/build/*
+.pio/build/
 .pio/build/megaatmega2560/idedata.json
 .pio/build/project.checksum
