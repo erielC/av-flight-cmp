@@ -3,6 +3,7 @@
 .vscode/launch.json
 .vscode/ipch
 .vscode/*
+.pio/build/
 .pio/build/*
 .pio/build/megaatmega2560/idedata.json
 .vscode/extensions.json
