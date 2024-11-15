@@ -76,7 +76,7 @@ void loop()
     magnetometer.verifyConnection(MAGNETOMETER_ADDRESS);
   }
 
-  magnetometer.getGaussMeasurement();
+  magnetometer.readGaussMeasurement();
 
   delay(100);
 }
