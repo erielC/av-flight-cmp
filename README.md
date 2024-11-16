@@ -1,6 +1,7 @@
 # av-flight-cmp
 
 SEDS State Machine
+<br>
 SEDS Avionics Sensors:
 
 <ul>
