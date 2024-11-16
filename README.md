@@ -3,7 +3,6 @@
 SEDS State Machine
 <br>
 SEDS Avionics Sensors:
-
 <ul>
   <li>MMC5983 Magnetometer</li>
   <li>ASM330 Main IMU</li>
