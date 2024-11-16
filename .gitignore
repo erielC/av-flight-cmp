@@ -7,3 +7,4 @@
 .pio/build/*
 .pio/build/megaatmega2560/idedata.json
 .vscode/extensions.json
+.pio/libdeps/megaatmega2560/Adafruit Unified Sensor/.piopm
