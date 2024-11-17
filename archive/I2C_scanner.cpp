@@ -1,5 +1,6 @@
 #include <Wire.h>
 #include <SPI.h>
+#include <Adafruit_I2CDevice.h>
 #include <HardwareSerial.h>
 #include <Arduino.h>
 
