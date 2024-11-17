@@ -39,6 +39,10 @@ void setup()
   Serial.begin(115200);
   Wire.begin(); // Sets up I2C bus
   PowerUpAllSensors();
+  if (currentState == SYSTEMS_CHECK)
+  {
+    Serial.println("STATE MACHINE: SYSTEM_CHECK");
+  }
 }
 
 void loop()
@@ -47,6 +51,7 @@ void loop()
 
 void PowerUpAllSensors(void)
 {
+  bool allSensorsValid = true;
   // if (PowerMagnetometer())
   // {
   //   Serial.println("Magnetometer ready");
@@ -63,6 +68,12 @@ void PowerUpAllSensors(void)
   else
   {
     Serial.println("Main IMU failed to initialize");
+    allSensorsValid = false;
+  }
+
+  if (allSensorsValid)
+  {
+    currentState = SYSTEMS_CHECK;
   }
 }
 
