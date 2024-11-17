@@ -220,7 +220,7 @@ public:
   void readTemperature();
 
   // Perform check that magnetometer is connected via I2C @erielC
-  void verifyConnection(uint8_t MAGNETOMETER_ADDRESS);
+  bool verifyConnection(uint8_t MAGNETOMETER_ADDRESS);
 
   // Get magnetic field strength in Gauss on XYZ axis
   void readGaussMeasurement();

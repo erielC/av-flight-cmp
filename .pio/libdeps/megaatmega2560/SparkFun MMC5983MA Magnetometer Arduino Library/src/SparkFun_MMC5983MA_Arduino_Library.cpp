@@ -1108,7 +1108,7 @@ bool SFE_MMC5983MA::clearMeasDoneInterrupt(uint8_t measMask)
     return (mmc_io.setRegisterBit(STATUS_REG, measMask));
 }
 
-void SFE_MMC5983MA::verifyConnection(uint8_t magnetometerAddress)
+bool SFE_MMC5983MA::verifyConnection(uint8_t magnetometerAddress)
 {
     // Checking if the I2C connection for the magnetometer address is correct/working
     Wire.beginTransmission(magnetometerAddress);
@@ -1116,11 +1116,13 @@ void SFE_MMC5983MA::verifyConnection(uint8_t magnetometerAddress)
     if (Wire.endTransmission() == 0)
     {
         Serial.println("Magnetometer connected successfully");
+        return true;
         // Connection is good; proceed with further operations if necessary
     }
     else
     {
         Serial.println("Failed to connect to the magnetometer");
+        return false;
         // Connection failed; handle the error (e.g., retry or enter a safe state)
     }
 }
