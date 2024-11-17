@@ -10,11 +10,21 @@ This repository is the Vinson main flight computer code for the arduino nano tha
 <br/>
 <h3>Sensor Libraries Directory:</h3>
 <ul>
-  <li><a href="https://github.com/sparkfun/SparkFun_MMC5983MA_Magnetometer_Arduino_Library/tree/main" target="_blank">MMC5983 Magnetometer</a></li>
-  <li><a href="https://github.com/sosandroid/FRAM_MB85RC_I2C" target="_blank">MB85RC FRAM</a></li>
-  <li><a href="https://github.com/adafruit/Adafruit_BMP3XX" target="_blank">BMP390 Barometer</a></li>
+  <h4>MMC5983 Magnetometer</h4>
+  <li><a href="https://github.com/sparkfun/SparkFun_MMC5983MA_Magnetometer_Arduino_Library/tree/main" target="_blank"> Magnetometer Library</a></li>
+  <li><a href="https://www.memsic.com/Public/Uploads/uploadfile/files/20220119/MMC5983MADatasheetRevA.pdf">Magnetometer Datasheet</a></li>
+  <h4>MB85RC FRAM</h4>
+  <li><a href="https://github.com/sosandroid/FRAM_MB85RC_I2C" target="_blank"> FRAM Library</a></li>
+  <h4>BMP390 Barometer</h4>
+  <li><a href="https://github.com/adafruit/Adafruit_BMP3XX" target="_blank"> Barometer Library</a></li>
+  <li><a href="https://cdn-learn.adafruit.com/assets/assets/000/096/781/original/bst-bmp390-fl000.pdf?1604526926">BMP390 Datasheet #1 (Adafruit & Bosch)</a></li>
+  <li><a href="https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp390-ds002.pdf">BMP390 Datasheet #2 (Bosch)</a></li>
+  <h4>ASM330LHH Main IMU</h4>
   <li><a href="https://github.com/stm32duino/ASM330LHH/tree/main" target="_blank">ASM330 Main IMU</a></li>
-  <li><a href="https://github.com/boschsensortec/BMI323_SensorAPI" target="_blank">BMI323 Secondary IMU</a></li>
+  <li><a href="https://www.st.com/resource/en/datasheet/asm330lhh.pdf">Main IMU (ASM330) Datasheet</a></li>
+  <li><a href="https://github.com/user-attachments/assets/08a4da38-90d2-46dd-91a4-b4015cfabe34">ASM330 Wiring Diagram</a></li>
+  <h4>BMI323 Backup IMU</h4>
+  <li><a href="https://github.com/boschsensortec/BMI323_SensorAPI" target="_blank">BMI323 IMU Library</a></li>
   <li><a href="https://github.com/adafruit/Adafruit_HTU21DF_Library/tree/master" target="_blank">HTU21D Humidity & Temperature Sensor</a></li>
 </ul>
   The sparkfun Humidity sensor library can be used if the adafruit one proves to be too tedious so link will remain here.
