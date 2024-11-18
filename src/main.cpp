@@ -11,6 +11,7 @@
 
 //////////////////// Function Prototypes ///////////////////
 void PowerUpAllSensors(void);
+void CheckAllSensors(void);
 bool PowerMagnetometer(void);
 bool PowerMainIMU(void);
 bool PowerBarometer(void);
@@ -47,6 +48,11 @@ void setup()
   {
     Serial.println("STATE MACHINE: SYSTEM_CHECK");
   }
+  else
+  {
+    Serial.println("One or more sensors failed to initialize.");
+    // Handle the error, e.g., enter a safe state or retry initialization
+  }
 }
 
 void loop()
@@ -68,6 +74,7 @@ void PowerUpAllSensors(void)
   else
   {
     Serial.println("MMC5983 Magnetometer failed to initialize");
+    allSensorsValid = false;
   }
 
   if (PowerMainIMU())
