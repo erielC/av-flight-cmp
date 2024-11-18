@@ -11,3 +11,5 @@ python -m pip install --upgrade pip
 ```python
 pip install dash pyserial
 ```
+
+**Video can run offline**
