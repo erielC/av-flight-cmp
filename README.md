@@ -1,6 +1,7 @@
-# av-flight-cmp feature/RunCam Split 4
+# av-flight-cmp Telemetry Dashboard
 
-4K camera used on rocket
-<br/>
+dependacies needed to install via pip:
 
-<a href="https://www.runcam.com/download/split4k/RC_Split_4k_Manual_EN.pdf"><h3>Camera Manual</h3></a>
+<ul>
+  <li></li>
+</ul>
