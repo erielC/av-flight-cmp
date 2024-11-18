@@ -3,6 +3,8 @@
 #include <Adafruit_I2CDevice.h>
 #include <SparkFun_MMC5983MA_Arduino_Library.h> // Magnetometer Library
 #include <ASM330LHHSensor.h>                    // Main IMU Library
+#include <Adafruit_Sensor.h>                    // Barometer Library
+#include "Adafruit_BMP3XX.h"                    // Barometer Library
 
 #define MAGNETOMETER_ADDRESS 0x30 // Magnetometer
 #define MAIN_IMU_ADDRESS 0x6A     // ASM330LHH Main IMU
@@ -11,11 +13,13 @@
 void PowerUpAllSensors(void);
 bool PowerMagnetometer(void);
 bool PowerMainIMU(void);
+bool PowerBarometer(void);
 ////////////////////////////////////////////////////////////
 
 //////////////////// Object (Sensor) Classes ///////////////
 SFE_MMC5983MA magnetometer;
 ASM330LHHSensor mainIMU(&Wire, ASM330LHH_I2C_ADD_L);
+Adafruit_BMP3XX barometer;
 ////////////////////////////////////////////////////////////
 
 enum RocketState
@@ -49,17 +53,22 @@ void loop()
 {
 }
 
+/**
+ * @erielC
+ * @brief Initializes and and verifies that all sensors are turned on.
+ * @return changes state machine to SYSTEMS_CHECK
+ */
 void PowerUpAllSensors(void)
 {
   bool allSensorsValid = true;
-  // if (PowerMagnetometer())
-  // {
-  //   Serial.println("Magnetometer ready");
-  // }
-  // else
-  // {
-  //   Serial.println("Magnetometer failed to initialize");
-  // }
+  if (PowerMagnetometer())
+  {
+    Serial.println("Magnetometer Ready");
+  }
+  else
+  {
+    Serial.println("Magnetometer failed to initialize");
+  }
 
   if (PowerMainIMU())
   {
@@ -71,46 +80,77 @@ void PowerUpAllSensors(void)
     allSensorsValid = false;
   }
 
+  if (PowerBarometer())
+  {
+    Serial.println("BMP390 Barometer Ready");
+  }
+  else
+  {
+    Serial.println("BMP390 Barometer failed to initialize");
+    allSensorsValid = false;
+  }
+
   if (allSensorsValid)
   {
     currentState = SYSTEMS_CHECK;
   }
 }
 
+/**
+ * @erielC
+ * @brief Initializes and configures the Magnetometer sensor.
+ * @return true if the magnetometer is successfully initialized and configured, false otherwise.
+ */
 bool PowerMagnetometer(void)
 {
   if (magnetometer.begin() == false)
   {
     Serial.println("MMC5983MA did not respond - check your wiring. Freezing.");
-    while (true)
-      ;
+    return false;
   }
 
   magnetometer.softReset();
-  if (magnetometer.verifyConnection(MAGNETOMETER_ADDRESS))
-  {
-    Serial.println("MMC5983MA GO");
-    return true;
-  }
-  else
-  {
-    Serial.println("MMC5983MA NO GO");
-    return false;
-  }
+  return true;
 }
 
+/**
+ * @erielC
+ * @brief Initializes and configures the ASM330LHH Main IMU sensor.
+ * @return true if the IMU is successfully initialized and configured, false otherwise.
+ */
 bool PowerMainIMU(void)
 {
   if (mainIMU.begin() != 0)
   {
     Serial.println("ASM330LHH did not respond - check your wiring. Freezing.");
-    while (true)
-      ;
+    return false;
   }
 
   mainIMU.Enable_X(); // Enable accelerometer
   mainIMU.Enable_G(); // Enable gyroscope
 
-  Serial.println("ASM330LHH GO");
+  Serial.println("ASM330LHH ON");
+  return true;
+}
+
+/**
+ * @erielC
+ * @brief Initializes and configures the barometer sensor.
+ * @return true if the barometer is successfully initialized and configured, false otherwise.
+ * @see .pio\libdeps\megaatmega2560\Adafruit BMP3XX Library\bmp3_defs.h for different configs
+ */
+bool PowerBarometer(void)
+{
+  if (barometer.begin_I2C() == false)
+  {
+    Serial.println("barometer390 did not respond - check your wiring. Freezing.");
+    return false;
+  }
+
+  //
+  barometer.setTemperatureOversampling(BMP3_OVERSAMPLING_8X);
+  barometer.setPressureOversampling(BMP3_OVERSAMPLING_4X);
+  barometer.setIIRFilterCoeff(BMP3_IIR_FILTER_COEFF_3);
+  barometer.setOutputDataRate(BMP3_ODR_50_HZ);
   return true;
 }
