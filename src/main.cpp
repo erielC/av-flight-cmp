@@ -63,11 +63,11 @@ void PowerUpAllSensors(void)
   bool allSensorsValid = true;
   if (PowerMagnetometer())
   {
-    Serial.println("Magnetometer Ready");
+    Serial.println("MMC5983 Magnetometer Ready");
   }
   else
   {
-    Serial.println("Magnetometer failed to initialize");
+    Serial.println("MMC5983 Magnetometer failed to initialize");
   }
 
   if (PowerMainIMU())
@@ -110,6 +110,7 @@ bool PowerMagnetometer(void)
   }
 
   magnetometer.softReset();
+  Serial.println("MMC5983MA ON");
   return true;
 }
 
@@ -143,7 +144,7 @@ bool PowerBarometer(void)
 {
   if (barometer.begin_I2C() == false)
   {
-    Serial.println("barometer390 did not respond - check your wiring. Freezing.");
+    Serial.println("BMP390 did not respond - check your wiring. Freezing.");
     return false;
   }
 
@@ -152,5 +153,7 @@ bool PowerBarometer(void)
   barometer.setPressureOversampling(BMP3_OVERSAMPLING_4X);
   barometer.setIIRFilterCoeff(BMP3_IIR_FILTER_COEFF_3);
   barometer.setOutputDataRate(BMP3_ODR_50_HZ);
+
+  Serial.println("BMP390 ON");
   return true;
 }
