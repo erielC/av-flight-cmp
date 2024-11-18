@@ -993,6 +993,59 @@ void ASM330LHHSensor::readAccelerometerData(void)
 }
 
 /**
+ * @brief  Verifies the I2C connection from the ASM330LHH sensor
+ * @retval ASM330LHH_OK in case of success, ASM330LHH_ERROR otherwise
+ */
+ASM330LHHStatusTypeDef ASM330LHHSensor::verifyConnection(uint8_t mainIMUAddress)
+{
+  Wire.beginTransmission(mainIMUAddress);
+
+  if (Wire.endTransmission() == 0)
+  {
+    Serial.println("Magnetometer connected successfully");
+    return ASM330LHH_OK;
+    // Connection is good; proceed with further operations if necessary
+  }
+  else
+  {
+    Serial.println("Failed to connect to the magnetometer");
+    return ASM330LHH_ERROR;
+    // Connection failed; handle the error (e.g., retry or enter a safe state)
+  }
+}
+
+/**
+ * @brief  Read the temperature from the ASM330LHH sensor to verify within operating temperature -35°C to 100°C
+ * @retval ASM330LHH_OK in case of success, ASM330LHH_ERROR otherwise
+ */
+ASM330LHHStatusTypeDef ASM330LHHSensor::readTemperature(void)
+{
+  uint8_t raw_temperature;
+  const int8_t MIN_OPERATING_TEMP = -35;
+  const int8_t MAX_OPERATING_TEMP = 100;
+  float temperature;
+
+  // Read the raw temperature data
+  if (asm330lhh_temperature_raw_get(&reg_ctx, &raw_temperature) != ASM330LHH_OK)
+  {
+    return ASM330LHH_ERROR; // Handle error in reading raw temperature
+  }
+
+  // Convert the raw data to degrees Celsius
+  temperature = asm330lhh_from_lsb_to_celsius(raw_temperature);
+
+  // Check if temperature is out of operating range
+  if (temperature < MIN_OPERATING_TEMP || temperature > MAX_OPERATING_TEMP)
+  {
+    // FIXME: Add function to handle over-temperature scenarios
+    // Example: handleOverTemperature();
+    return ASM330LHH_ERROR;
+  }
+
+  return ASM330LHH_OK;
+}
+
+/**
  * @brief  Set the ASM330LHH register value
  * @param  Reg address to be written
  * @param  Data value to be written

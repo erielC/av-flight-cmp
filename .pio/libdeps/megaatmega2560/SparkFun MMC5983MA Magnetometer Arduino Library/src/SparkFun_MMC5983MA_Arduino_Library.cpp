@@ -1138,30 +1138,22 @@ void SFE_MMC5983MA::readInitialTemperature()
     Serial.println(celsius);
 }
 
-void SFE_MMC5983MA::readTemperature()
+bool SFE_MMC5983MA::readTemperature()
 {
     // reason we dont call magnetometer object is becuase the getTemperature() function is located inside the file
     float celsius = getTemperature();
-    const float MIN_OPERATING_TEMP = -35;
-    const float MAX_OPERATING_TEMP = 100;
+    const uint8_t MIN_OPERATING_TEMP = -35;
+    const uint8_t MAX_OPERATING_TEMP = 100;
 
     // Check for close-to-limit temperatures
     if (celsius < MIN_OPERATING_TEMP || celsius > MAX_OPERATING_TEMP)
     {
+        return false;
         // FIXME add function that can turn off sensor and log all data it has recorded
         // POTENTIAL SOLUTION: make a function that calls it instead of a return statement ex. void handle_over_temperature();
     }
-    else if (celsius < -10 || celsius > 90)
-    {
-        Serial.print("Close to limit C: ");
-        Serial.println(celsius);
-    }
-    // Check for nominal operating temperature range
-    else if (celsius >= 10 && celsius <= 60)
-    {
-        Serial.print("Nominal Operating Temperature C: ");
-        Serial.println(celsius);
-    }
+
+    return true;
 }
 
 void SFE_MMC5983MA::readGaussMeasurement()

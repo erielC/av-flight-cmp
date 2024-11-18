@@ -82,6 +82,8 @@ public:
   ASM330LHHSensor(SPIClass *spi, int cs_pin, uint32_t spi_speed = 2000000);
   void readGryoscopeData();
   void readAccelerometerData();
+  ASM330LHHStatusTypeDef verifyConnection(uint8_t mainIMUAddress);
+  ASM330LHHStatusTypeDef readTemperature();
   ASM330LHHStatusTypeDef begin();
   ASM330LHHStatusTypeDef end();
   ASM330LHHStatusTypeDef ReadID(uint8_t *Id);
