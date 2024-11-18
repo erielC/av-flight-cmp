@@ -6,14 +6,19 @@
 #include <Adafruit_Sensor.h>                    // Barometer Library
 #include "Adafruit_BMP3XX.h"                    // Barometer Library
 
-#define MAGNETOMETER_ADDRESS 0x30 // Magnetometer
+#define MAGNETOMETER_ADDRESS 0x30 // MMC5983 Magnetometer
 #define MAIN_IMU_ADDRESS 0x6A     // ASM330LHH Main IMU
+#define BAROMETER_ADDRESS 0x77    // BMP390 Barometer
 
 //////////////////// Function Prototypes ///////////////////
 void PowerUpAllSensors(void);
 void CheckAllSensors(void);
 bool PowerMagnetometer(void);
+bool MagnetometerReadTemperature(void);
+bool MagnetometerVerifyConnection(void);
 bool PowerMainIMU(void);
+// bool MainIMUReadTemperature(void);
+bool MainIMUVerifyConnection(void);
 bool PowerBarometer(void);
 ////////////////////////////////////////////////////////////
 
@@ -43,27 +48,24 @@ void setup()
 {
   Serial.begin(115200);
   Wire.begin(); // Sets up I2C bus
-  PowerUpAllSensors();
-  if (currentState == SYSTEMS_CHECK)
-  {
-    Serial.println("STATE MACHINE: SYSTEM_CHECK");
-  }
-  else
-  {
-    Serial.println("One or more sensors failed to initialize.");
-    // Handle the error, e.g., enter a safe state or retry initialization
-  }
 }
 
 void loop()
 {
+  switch (currentState)
+  {
+  case POWER_ON:
+    Serial.println("STATE: POWER_ON");
+    PowerUpAllSensors();
+    break;
+  case SYSTEMS_CHECK:
+    Serial.println("STATE: SYSTEMS_CHECK");
+    // CheckAllSensors();
+  default:
+    break;
+  }
 }
 
-/**
- * @erielC
- * @brief Initializes and and verifies that all sensors are turned on.
- * @return changes state machine to SYSTEMS_CHECK
- */
 void PowerUpAllSensors(void)
 {
   bool allSensorsValid = true;
@@ -101,13 +103,13 @@ void PowerUpAllSensors(void)
   {
     currentState = SYSTEMS_CHECK;
   }
+  else
+  {
+    Serial.println("One or more sensors failed to initialize.");
+    // Handle the error, e.g., enter a safe state or retry initialization
+  }
 }
 
-/**
- * @erielC
- * @brief Initializes and configures the Magnetometer sensor.
- * @return true if the magnetometer is successfully initialized and configured, false otherwise.
- */
 bool PowerMagnetometer(void)
 {
   if (magnetometer.begin() == false)
@@ -121,11 +123,6 @@ bool PowerMagnetometer(void)
   return true;
 }
 
-/**
- * @erielC
- * @brief Initializes and configures the ASM330LHH Main IMU sensor.
- * @return true if the IMU is successfully initialized and configured, false otherwise.
- */
 bool PowerMainIMU(void)
 {
   if (mainIMU.begin() != 0)
@@ -141,12 +138,6 @@ bool PowerMainIMU(void)
   return true;
 }
 
-/**
- * @erielC
- * @brief Initializes and configures the barometer sensor.
- * @return true if the barometer is successfully initialized and configured, false otherwise.
- * @see .pio\libdeps\megaatmega2560\Adafruit BMP3XX Library\bmp3_defs.h for different configs
- */
 bool PowerBarometer(void)
 {
   if (barometer.begin_I2C() == false)
@@ -163,4 +154,60 @@ bool PowerBarometer(void)
 
   Serial.println("BMP390 ON");
   return true;
+}
+
+bool MagnetometerReadTemperature(void)
+{
+  if (magnetometer.readTemperature())
+  {
+    Serial.println("MMC5983 Magnetometer GO");
+    return true;
+  }
+  else
+  {
+    Serial.println("MMC5983 Magnetometer NO GO TOO HOT/COLD");
+    return false;
+  }
+}
+
+bool MagnetometerVerifyConnection(void)
+{
+  if (magnetometer.verifyConnection(MAGNETOMETER_ADDRESS))
+  {
+    Serial.println("MMC5983 Magnetometer Connection Verified");
+    return true;
+  }
+  else
+  {
+    Serial.println("MMC5983 Magnetometer Connection Failed");
+    return false;
+  }
+}
+
+bool MainIMUReadTemperature(void)
+{
+  if (mainIMU.readTemperature() == 0)
+  {
+    Serial.println("ASM330LHH Main IMU GO");
+    return true;
+  }
+  else
+  {
+    Serial.println("ASM330LHH Main IMU NO GO");
+    return false;
+  }
+}
+
+bool MainIMUVerifyConnection(void)
+{
+  if (mainIMU.verifyConnection(MAIN_IMU_ADDRESS) == 0)
+  {
+    Serial.println("ASM330LHH Main IMU Connection Verified");
+    return true;
+  }
+  else
+  {
+    Serial.println("ASM330LHH Main IMU Connection Failed");
+    return false;
+  }
 }
