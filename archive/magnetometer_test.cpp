@@ -72,7 +72,7 @@ void loop()
     lastMeasurementTime = millis();
 
     // Perform measurements
-    magnetometer.readTemperature();
+    magnetometer.readTemperature(); // boolean value
     magnetometer.verifyConnection(MAGNETOMETER_ADDRESS);
   }
 
