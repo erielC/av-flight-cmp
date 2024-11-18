@@ -2,6 +2,6 @@
 
 dependacies needed to install via pip:
 
-<ul>
-  <li></li>
-</ul>
+```python
+pip install dash pyserial
+```
