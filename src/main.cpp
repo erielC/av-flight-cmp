@@ -59,8 +59,9 @@ void loop()
     PowerUpAllSensors();
     break;
   case SYSTEMS_CHECK:
-    Serial.println("STATE: SYSTEMS_CHECK");
+    //Serial.println("STATE: SYSTEMS_CHECK");
     // CheckAllSensors();
+    break;
   default:
     break;
   }
