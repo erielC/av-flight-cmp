@@ -7,6 +7,7 @@
 
 #include <Wire.h>            // Include the Wire library for I2C
 #include <ASM330LHHSensor.h> // Include the sensor library
+#include <Adafruit_I2CDevice.h>
 
 #define INT_1 A5 // Define INT_1 pin (adjust as needed for your setup)
 

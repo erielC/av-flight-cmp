@@ -41,6 +41,7 @@
 
 // Includes
 #include <ASM330LHHSensor.h>
+#include <Adafruit_I2CDevice.h>
 
 #ifdef ARDUINO_SAM_DUE
 #define DEV_I2C Wire1
@@ -58,7 +59,8 @@
 // Components
 ASM330LHHSensor AccGyr(&DEV_I2C, ASM330LHH_I2C_ADD_L);
 
-void setup() {
+void setup()
+{
   // Led.
   pinMode(LED_BUILTIN, OUTPUT);
 
@@ -71,7 +73,7 @@ void setup() {
 
   // Initialize serial for output.
   SerialPort.begin(115200);
-  
+
   // Initialize I2C bus.
   DEV_I2C.begin();
 
@@ -80,7 +82,8 @@ void setup() {
   AccGyr.Enable_G();
 }
 
-void loop() {
+void loop()
+{
   // Led blinking.
   digitalWrite(LED_BUILTIN, HIGH);
   delay(250);
