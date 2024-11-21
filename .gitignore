@@ -1,2 +1,10 @@
 .vscode/
 .pio/
+include/
+lib/
+logs/
+src/
+test/
+archive/
+build/
+platformio.ini
