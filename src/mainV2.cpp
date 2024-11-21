@@ -12,13 +12,18 @@
 
 //////////////////// Function Prototypes ///////////////////
 bool InitializeAndCheckSensors(void);
+
 bool PowerMagnetometer(void);
-bool MagnetometerReadTemperature(void);
+bool MagnetometerVerifyTemperature(void);
 bool MagnetometerVerifyConnection(void);
+
 bool PowerMainIMU(void);
-bool MainIMUReadTemperature(void);
+bool MainIMUVerifyTemperature(void);
 bool MainIMUVerifyConnection(void);
+
 bool PowerBarometer(void);
+bool BarometerVerifyTemperature(void);
+bool BarometerVerifyConnection(void);
 ////////////////////////////////////////////////////////////
 
 //////////////////// Object (Sensor) Classes ///////////////
@@ -89,7 +94,7 @@ bool InitializeAndCheckSensors()
   if (PowerMagnetometer())
   {
     Serial.println("MMC5983 Magnetometer Powered Up.");
-    if (!MagnetometerReadTemperature())
+    if (!MagnetometerVerifyTemperature())
     {
       Serial.println("Magnetometer Temperature Check Failed.");
       allSensorsValid = false;
@@ -111,7 +116,7 @@ bool InitializeAndCheckSensors()
   if (PowerMainIMU())
   {
     Serial.println("ASM330 Main IMU Powered Up.");
-    if (!MainIMUReadTemperature())
+    if (!MainIMUVerifyTemperature())
     {
       Serial.println("Main IMU Temperature Check Failed.");
       allSensorsValid = false;
@@ -133,6 +138,17 @@ bool InitializeAndCheckSensors()
   if (PowerBarometer())
   {
     Serial.println("BMP390 Barometer Powered Up.");
+    if (!BarometerVerifyTemperature())
+    {
+      Serial.println("Barometer Temperature Check Failed.");
+      allSensorsValid = false;
+    }
+
+    if (!BarometerVerifyConnection())
+    {
+      Serial.println("Barometer I2C Connection Check Failed.");
+      allSensorsValid = false;
+    }
   }
   else
   {
@@ -155,9 +171,9 @@ bool PowerMagnetometer()
   return false;
 }
 
-bool MagnetometerReadTemperature(void)
+bool MagnetometerVerifyTemperature(void)
 {
-  if (magnetometer.readTemperature())
+  if (magnetometer.verifyTemperature())
   {
     Serial.println("MMC5983 Magnetometer Temperature Verified");
     return true;
@@ -196,15 +212,15 @@ bool PowerMainIMU(void)
   return false;
 }
 
-bool MainIMUReadTemperature(void)
+bool MainIMUVerifyTemperature(void)
 {
-  if (mainIMU.readTemperature() == ASM330LHH_OK)
+  if (mainIMU.verifyTemperature() == ASM330LHH_OK)
   {
     Serial.println("ASM330LHH Main IMU Temperature Verified");
     return true;
   }
   Serial.println("ASM330LHH Main IMU Temperature Check Failed.");
-  return false; 
+  return false;
 }
 
 bool MainIMUVerifyConnection(void)
@@ -230,5 +246,27 @@ bool PowerBarometer(void)
     return true;
   }
   Serial.println("BMP390 did not respond - check your wiring.");
+  return false;
+}
+
+bool BarometerVerifyTemperature(void)
+{
+  if (barometer.verifyTemperature())
+  {
+    Serial.println("BMP390 Barometer Temperature Verified");
+    return true;
+  }
+  Serial.println("BMP390 Barometer Temperature Check Failed.");
+  return false;
+}
+
+bool BarometerVerifyConnection(void)
+{
+  if (barometer.verifyConnection())
+  {
+    Serial.println("Device is ready to use.");
+    return true;
+  }
+  Serial.println("Connection failed! Check wiring or I2C address.");
   return false;
 }
