@@ -8,7 +8,7 @@
 
 #define MAGNETOMETER_ADDRESS 0x30 // MMC5983 Magnetometer
 #define MAIN_IMU_ADDRESS 0x6A     // ASM330LHH Main IMU
-#define BAROMETER_ADDRESS 0x77    // BMP390 Barometer
+#define BAROMETER_ADDRESS 0x76    // BMP390 Barometer
 
 //////////////////// Function Prototypes ///////////////////
 void PowerUpAllSensors(void);
