@@ -37,8 +37,7 @@ This repository is the Vinson main flight computer code for the arduino nano tha
 <ul>
   <li>ASM330: 0x6A</li>
   <li>Magnetometer: 0x30</li>
-  <li>BMP390: </li>
-  <li>BMP280: 0x76</li>
+  <li>BMP390: 0x76 </li>
 </ul>
 
 <h3>GUIDELINES for Setting up platform.IO</h3>
