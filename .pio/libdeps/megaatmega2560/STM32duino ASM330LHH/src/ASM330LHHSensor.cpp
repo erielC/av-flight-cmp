@@ -1018,7 +1018,7 @@ ASM330LHHStatusTypeDef ASM330LHHSensor::verifyConnection(uint8_t mainIMUAddress)
  * @brief  Read the temperature from the ASM330LHH sensor to verify within operating temperature -35°C to 100°C
  * @retval ASM330LHH_OK in case of success, ASM330LHH_ERROR otherwise
  */
-ASM330LHHStatusTypeDef ASM330LHHSensor::readTemperature(void)
+ASM330LHHStatusTypeDef ASM330LHHSensor::verifyTemperature(void)
 {
   uint8_t raw_temperature;
   const int8_t MIN_OPERATING_TEMP = -35;

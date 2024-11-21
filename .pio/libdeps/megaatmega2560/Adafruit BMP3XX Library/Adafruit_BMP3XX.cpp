@@ -28,7 +28,7 @@
 #include "Adafruit_BMP3XX.h"
 #include "Arduino.h"
 
-//#define BMP3XX_DEBUG
+// #define BMP3XX_DEBUG
 
 Adafruit_I2CDevice *g_i2c_dev = NULL; ///< Global I2C interface pointer
 Adafruit_SPIDevice *g_spi_dev = NULL; ///< Global SPI interface pointer
@@ -55,7 +55,8 @@ static int8_t cal_crc(uint8_t seed, uint8_t data);
     @brief  Instantiates sensor
 */
 /**************************************************************************/
-Adafruit_BMP3XX::Adafruit_BMP3XX(void) {
+Adafruit_BMP3XX::Adafruit_BMP3XX(void)
+{
   _meas_end = 0;
   _filterEnabled = _tempOSEnabled = _presOSEnabled = false;
 }
@@ -73,7 +74,8 @@ Adafruit_BMP3XX::Adafruit_BMP3XX(void) {
     @return True on sensor initialization success. False on failure.
 */
 /**************************************************************************/
-bool Adafruit_BMP3XX::begin_I2C(uint8_t addr, TwoWire *theWire) {
+bool Adafruit_BMP3XX::begin_I2C(uint8_t addr, TwoWire *theWire)
+{
   if (i2c_dev)
     delete i2c_dev;
   if (spi_dev)
@@ -83,7 +85,8 @@ bool Adafruit_BMP3XX::begin_I2C(uint8_t addr, TwoWire *theWire) {
   g_i2c_dev = i2c_dev = new Adafruit_I2CDevice(addr, theWire);
 
   // verify i2c address was found
-  if (!i2c_dev->begin()) {
+  if (!i2c_dev->begin())
+  {
     return false;
   }
 
@@ -105,7 +108,8 @@ bool Adafruit_BMP3XX::begin_I2C(uint8_t addr, TwoWire *theWire) {
  *    @return True if initialization was successful, otherwise false.
  */
 bool Adafruit_BMP3XX::begin_SPI(uint8_t cs_pin, SPIClass *theSPI,
-                                uint32_t frequency) {
+                                uint32_t frequency)
+{
   if (i2c_dev)
     delete i2c_dev;
   if (spi_dev)
@@ -114,12 +118,13 @@ bool Adafruit_BMP3XX::begin_SPI(uint8_t cs_pin, SPIClass *theSPI,
 
   g_spi_dev = spi_dev =
       new Adafruit_SPIDevice(cs_pin,
-                             frequency,              // frequency
-                             SPI_BITORDER_MSBFIRST,  // bit order
-                             SPI_MODE0,              // data mode
+                             frequency,             // frequency
+                             SPI_BITORDER_MSBFIRST, // bit order
+                             SPI_MODE0,             // data mode
                              theSPI);
 
-  if (!spi_dev->begin()) {
+  if (!spi_dev->begin())
+  {
     return false;
   }
 
@@ -143,7 +148,8 @@ bool Adafruit_BMP3XX::begin_SPI(uint8_t cs_pin, SPIClass *theSPI,
  *    @return True if initialization was successful, otherwise false.
  */
 bool Adafruit_BMP3XX::begin_SPI(int8_t cs_pin, int8_t sck_pin, int8_t miso_pin,
-                                int8_t mosi_pin, uint32_t frequency) {
+                                int8_t mosi_pin, uint32_t frequency)
+{
   if (i2c_dev)
     delete i2c_dev;
   if (spi_dev)
@@ -152,11 +158,12 @@ bool Adafruit_BMP3XX::begin_SPI(int8_t cs_pin, int8_t sck_pin, int8_t miso_pin,
 
   g_spi_dev = spi_dev =
       new Adafruit_SPIDevice(cs_pin, sck_pin, miso_pin, mosi_pin,
-                             frequency,              // frequency
-                             SPI_BITORDER_MSBFIRST,  // bit order
-                             SPI_MODE0);             // data mode
+                             frequency,             // frequency
+                             SPI_BITORDER_MSBFIRST, // bit order
+                             SPI_MODE0);            // data mode
 
-  if (!spi_dev->begin()) {
+  if (!spi_dev->begin())
+  {
     return false;
   }
 
@@ -170,7 +177,8 @@ bool Adafruit_BMP3XX::begin_SPI(int8_t cs_pin, int8_t sck_pin, int8_t miso_pin,
   return _init();
 }
 
-bool Adafruit_BMP3XX::_init(void) {
+bool Adafruit_BMP3XX::_init(void)
+{
   g_i2c_dev = i2c_dev;
   g_spi_dev = spi_dev;
   the_sensor.delay_us = delay_usec;
@@ -250,7 +258,8 @@ bool Adafruit_BMP3XX::_init(void) {
     @return Temperature in degrees Centigrade
 */
 /**************************************************************************/
-float Adafruit_BMP3XX::readTemperature(void) {
+float Adafruit_BMP3XX::readTemperature(void)
+{
   performReading();
   return temperature;
 }
@@ -269,7 +278,8 @@ uint8_t Adafruit_BMP3XX::chipID(void) { return the_sensor.chip_id; }
     @return Barometic pressure in Pascals
 */
 /**************************************************************************/
-float Adafruit_BMP3XX::readPressure(void) {
+float Adafruit_BMP3XX::readPressure(void)
+{
   performReading();
   return pressure;
 }
@@ -285,7 +295,8 @@ float Adafruit_BMP3XX::readPressure(void) {
     @return Altitude in meters
 */
 /**************************************************************************/
-float Adafruit_BMP3XX::readAltitude(float seaLevel) {
+float Adafruit_BMP3XX::readAltitude(float seaLevel)
+{
   // Equation taken from BMP180 datasheet (page 16):
   //  http://www.adafruit.com/datasheets/BST-BMP180-DS000-09.pdf
 
@@ -307,7 +318,8 @@ float Adafruit_BMP3XX::readAltitude(float seaLevel) {
     @return True on success, False on failure
 */
 /**************************************************************************/
-bool Adafruit_BMP3XX::performReading(void) {
+bool Adafruit_BMP3XX::performReading(void)
+{
   g_i2c_dev = i2c_dev;
   g_spi_dev = spi_dev;
   int8_t rslt;
@@ -320,22 +332,26 @@ bool Adafruit_BMP3XX::performReading(void) {
   the_sensor.settings.temp_en = BMP3_ENABLE;
   settings_sel |= BMP3_SEL_TEMP_EN;
   sensor_comp |= BMP3_TEMP;
-  if (_tempOSEnabled) {
+  if (_tempOSEnabled)
+  {
     settings_sel |= BMP3_SEL_TEMP_OS;
   }
 
   the_sensor.settings.press_en = BMP3_ENABLE;
   settings_sel |= BMP3_SEL_PRESS_EN;
   sensor_comp |= BMP3_PRESS;
-  if (_presOSEnabled) {
+  if (_presOSEnabled)
+  {
     settings_sel |= BMP3_SEL_PRESS_OS;
   }
 
-  if (_filterEnabled) {
+  if (_filterEnabled)
+  {
     settings_sel |= BMP3_SEL_IIR_FILTER;
   }
 
-  if (_ODREnabled) {
+  if (_ODREnabled)
+  {
     settings_sel |= BMP3_SEL_ODR;
   }
 
@@ -398,7 +414,8 @@ bool Adafruit_BMP3XX::performReading(void) {
 */
 /**************************************************************************/
 
-bool Adafruit_BMP3XX::setTemperatureOversampling(uint8_t oversample) {
+bool Adafruit_BMP3XX::setTemperatureOversampling(uint8_t oversample)
+{
   if (oversample > BMP3_OVERSAMPLING_32X)
     return false;
 
@@ -414,6 +431,45 @@ bool Adafruit_BMP3XX::setTemperatureOversampling(uint8_t oversample) {
 
 /**************************************************************************/
 /*!
+    @erielC
+    @brief  Checks sensnor internal temperature for operating limits
+    @return True on success, False on failure
+*/
+/**************************************************************************/
+bool Adafruit_BMP3XX::verifyTemperature(void)
+{
+  const double MIN_OPERATING_TEMP = -40.0;
+  const double MAX_OPERATING_TEMP = 80.0;
+
+  // temperature variable is used from public class
+  if (temperature < MIN_OPERATING_TEMP || temperature > MAX_OPERATING_TEMP)
+  {
+    Serial.println("Temperature out of range!");
+    return false;
+  }
+  return true;
+}
+
+bool Adafruit_BMP3XX::verifyConnection(uint8_t BMP_ADDRESS)
+{
+  Wire.beginTransmission(BMP_ADDRESS);
+
+  if (Wire.endTransmission() == 0)
+  {
+    Serial.println("BMP390 Barometer connected suaddressccessfully");
+    return true;
+    // Connection is good; proceed with further operations if necessary
+  }
+  else
+  {
+    Serial.println("Failed to connect to the barometer");
+    return false;
+    // Connection failed; handle the error (e.g., retry or enter a safe state)
+  }
+}
+
+/**************************************************************************/
+/*!
     @brief  Setter for Pressure oversampling
     @param  oversample Oversampling setting, can be BMP3_NO_OVERSAMPLING,
    BMP3_OVERSAMPLING_2X, BMP3_OVERSAMPLING_4X, BMP3_OVERSAMPLING_8X,
@@ -421,7 +477,8 @@ bool Adafruit_BMP3XX::setTemperatureOversampling(uint8_t oversample) {
     @return True on success, False on failure
 */
 /**************************************************************************/
-bool Adafruit_BMP3XX::setPressureOversampling(uint8_t oversample) {
+bool Adafruit_BMP3XX::setPressureOversampling(uint8_t oversample)
+{
   if (oversample > BMP3_OVERSAMPLING_32X)
     return false;
 
@@ -446,7 +503,8 @@ bool Adafruit_BMP3XX::setPressureOversampling(uint8_t oversample) {
 
 */
 /**************************************************************************/
-bool Adafruit_BMP3XX::setIIRFilterCoeff(uint8_t filtercoeff) {
+bool Adafruit_BMP3XX::setIIRFilterCoeff(uint8_t filtercoeff)
+{
   if (filtercoeff > BMP3_IIR_FILTER_COEFF_127)
     return false;
 
@@ -472,7 +530,8 @@ bool Adafruit_BMP3XX::setIIRFilterCoeff(uint8_t filtercoeff) {
 
 */
 /**************************************************************************/
-bool Adafruit_BMP3XX::setOutputDataRate(uint8_t odr) {
+bool Adafruit_BMP3XX::setOutputDataRate(uint8_t odr)
+{
   if (odr > BMP3_ODR_0_001_HZ)
     return false;
 
@@ -489,7 +548,8 @@ bool Adafruit_BMP3XX::setOutputDataRate(uint8_t odr) {
 */
 /**************************************************************************/
 int8_t i2c_read(uint8_t reg_addr, uint8_t *reg_data, uint32_t len,
-                void *intf_ptr) {
+                void *intf_ptr)
+{
   // Serial.print("I2C read address 0x"); Serial.print(reg_addr, HEX);
   // Serial.print(" len "); Serial.println(len, HEX);
 
@@ -505,7 +565,8 @@ int8_t i2c_read(uint8_t reg_addr, uint8_t *reg_data, uint32_t len,
 */
 /**************************************************************************/
 int8_t i2c_write(uint8_t reg_addr, const uint8_t *reg_data, uint32_t len,
-                 void *intf_ptr) {
+                 void *intf_ptr)
+{
   // Serial.print("I2C write address 0x"); Serial.print(reg_addr, HEX);
   // Serial.print(" len "); Serial.println(len, HEX);
 
@@ -521,7 +582,8 @@ int8_t i2c_write(uint8_t reg_addr, const uint8_t *reg_data, uint32_t len,
 */
 /**************************************************************************/
 static int8_t spi_read(uint8_t reg_addr, uint8_t *reg_data, uint32_t len,
-                       void *intf_ptr) {
+                       void *intf_ptr)
+{
   g_spi_dev->write_then_read(&reg_addr, 1, reg_data, len, 0xFF);
   return 0;
 }
@@ -532,7 +594,8 @@ static int8_t spi_read(uint8_t reg_addr, uint8_t *reg_data, uint32_t len,
 */
 /**************************************************************************/
 static int8_t spi_write(uint8_t reg_addr, const uint8_t *reg_data, uint32_t len,
-                        void *intf_ptr) {
+                        void *intf_ptr)
+{
   g_spi_dev->write((uint8_t *)reg_data, len, &reg_addr, 1);
 
   return 0;
@@ -540,7 +603,8 @@ static int8_t spi_write(uint8_t reg_addr, const uint8_t *reg_data, uint32_t len,
 
 static void delay_usec(uint32_t us, void *intf_ptr) { delayMicroseconds(us); }
 
-static int8_t validate_trimming_param(struct bmp3_dev *dev) {
+static int8_t validate_trimming_param(struct bmp3_dev *dev)
+{
   int8_t rslt;
   uint8_t crc = 0xFF;
   uint8_t stored_crc;
@@ -548,14 +612,17 @@ static int8_t validate_trimming_param(struct bmp3_dev *dev) {
   uint8_t i;
 
   rslt = bmp3_get_regs(BMP3_REG_CALIB_DATA, trim_param, 21, dev);
-  if (rslt == BMP3_OK) {
-    for (i = 0; i < 21; i++) {
+  if (rslt == BMP3_OK)
+  {
+    for (i = 0; i < 21; i++)
+    {
       crc = (uint8_t)cal_crc(crc, trim_param[i]);
     }
 
     crc = (crc ^ 0xFF);
     rslt = bmp3_get_regs(0x30, &stored_crc, 1, dev);
-    if (stored_crc != crc) {
+    if (stored_crc != crc)
+    {
       rslt = -1;
     }
   }
@@ -566,15 +633,20 @@ static int8_t validate_trimming_param(struct bmp3_dev *dev) {
 /*
  * @brief function to calculate CRC for the trimming parameters
  * */
-static int8_t cal_crc(uint8_t seed, uint8_t data) {
+static int8_t cal_crc(uint8_t seed, uint8_t data)
+{
   int8_t poly = 0x1D;
   int8_t var2;
   uint8_t i;
 
-  for (i = 0; i < 8; i++) {
-    if ((seed & 0x80) ^ (data & 0x80)) {
+  for (i = 0; i < 8; i++)
+  {
+    if ((seed & 0x80) ^ (data & 0x80))
+    {
       var2 = 1;
-    } else {
+    }
+    else
+    {
       var2 = 0;
     }
 

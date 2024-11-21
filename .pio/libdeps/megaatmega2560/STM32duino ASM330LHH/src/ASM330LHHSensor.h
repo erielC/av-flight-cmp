@@ -83,7 +83,7 @@ public:
   void readGryoscopeData();
   void readAccelerometerData();
   ASM330LHHStatusTypeDef verifyConnection(uint8_t mainIMUAddress);
-  ASM330LHHStatusTypeDef readTemperature();
+  ASM330LHHStatusTypeDef verifyTemperature();
   ASM330LHHStatusTypeDef begin();
   ASM330LHHStatusTypeDef end();
   ASM330LHHStatusTypeDef ReadID(uint8_t *Id);

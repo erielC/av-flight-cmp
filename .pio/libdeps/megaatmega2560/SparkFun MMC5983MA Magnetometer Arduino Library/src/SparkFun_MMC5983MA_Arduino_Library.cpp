@@ -1138,7 +1138,7 @@ void SFE_MMC5983MA::readInitialTemperature()
     Serial.println(celsius);
 }
 
-bool SFE_MMC5983MA::readTemperature()
+bool SFE_MMC5983MA::verifyTemperature()
 {
     // reason we dont call magnetometer object is becuase the getTemperature() function is located inside the file
     float celsius = getTemperature();

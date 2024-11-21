@@ -30,7 +30,7 @@
 /*=========================================================================
     I2C ADDRESS/BITS
     -----------------------------------------------------------------------*/
-#define BMP3XX_DEFAULT_ADDRESS (0x77) ///< The default I2C address
+#define BMP3XX_DEFAULT_ADDRESS (0x76) ///< The default I2C address
 /*=========================================================================*/
 #define BMP3XX_DEFAULT_SPIFREQ (1000000) ///< The default SPI Clock speed
 
@@ -38,7 +38,8 @@
  *  Wraps the Bosch library for Arduino usage
  */
 
-class Adafruit_BMP3XX {
+class Adafruit_BMP3XX
+{
 public:
   Adafruit_BMP3XX();
 
@@ -53,6 +54,8 @@ public:
   float readPressure(void);
   float readAltitude(float seaLevel);
 
+  bool verifyConnection(uint8_t BMP_ADDRESS = BMP3XX_DEFAULT_ADDRESS);
+  bool verifyTemperature(void);
   bool setTemperatureOversampling(uint8_t os);
   bool setPressureOversampling(uint8_t os);
   bool setIIRFilterCoeff(uint8_t fs);

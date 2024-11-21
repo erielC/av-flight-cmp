@@ -217,7 +217,7 @@ public:
   void readInitialTemperature();
 
   // Performs a loop check to verify that sensor is working in optimal range of 10C - 60C (degrees celsius) @erielC
-  bool readTemperature();
+  bool verifyTemperature();
 
   // Perform check that magnetometer is connected via I2C @erielC
   bool verifyConnection(uint8_t MAGNETOMETER_ADDRESS);
