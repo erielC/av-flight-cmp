@@ -20,6 +20,7 @@ bool MagnetometerVerifyConnection(void);
 bool PowerMainIMU(void);
 bool MainIMUVerifyTemperature(void);
 bool MainIMUVerifyConnection(void);
+bool isDeviceConnected(uint8_t address); // Main IMU only
 
 bool PowerBarometer(void);
 bool BarometerVerifyTemperature(void);
@@ -201,6 +202,13 @@ bool MagnetometerVerifyConnection(void)
 */
 bool PowerMainIMU(void)
 {
+  // Explicit I2C device check before initializing
+  if (!isDeviceConnected(MAIN_IMU_ADDRESS))
+  {
+    Serial.println("ASM330LHH not found on the I2C bus.");
+    return false;
+  }
+
   if (mainIMU.begin() == ASM330LHH_OK)
   {
     mainIMU.Enable_X();
@@ -208,6 +216,7 @@ bool PowerMainIMU(void)
     Serial.println("ASM330LHH ON");
     return true;
   }
+
   Serial.println("ASM330LHH did not respond - check your wiring.");
   return false;
 }
@@ -223,9 +232,15 @@ bool MainIMUVerifyTemperature(void)
   return false;
 }
 
+bool isDeviceConnected(uint8_t address)
+{
+  Wire.beginTransmission(address);
+  return (Wire.endTransmission() == 0); // 0 means the device acknowledged
+}
+
 bool MainIMUVerifyConnection(void)
 {
-  if (mainIMU.verifyConnection(MAIN_IMU_ADDRESS) == ASM330LHH_OK)
+  if (isDeviceConnected(MAIN_IMU_ADDRESS) && mainIMU.verifyConnection(MAIN_IMU_ADDRESS) == ASM330LHH_OK)
   {
     Serial.println("ASM330LHH Main IMU Connection Verified");
     return true;
@@ -236,7 +251,7 @@ bool MainIMUVerifyConnection(void)
 
 bool PowerBarometer(void)
 {
-  if (barometer.begin_I2C())
+  if (barometer.begin_I2C(BAROMETER_ADDRESS))
   {
     barometer.setTemperatureOversampling(BMP3_OVERSAMPLING_8X);
     barometer.setPressureOversampling(BMP3_OVERSAMPLING_4X);
