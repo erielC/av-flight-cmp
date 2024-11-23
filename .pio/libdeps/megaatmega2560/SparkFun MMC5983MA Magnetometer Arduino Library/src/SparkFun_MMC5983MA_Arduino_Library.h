@@ -220,7 +220,7 @@ public:
   bool verifyTemperature();
 
   // Perform check that magnetometer is connected via I2C @erielC
-  bool verifyConnection(uint8_t MAGNETOMETER_ADDRESS);
+  bool verifyConnection(uint8_t magnetometerAddress); // address is magnetometer address
 
   // Get magnetic field strength in Gauss on XYZ axis
   void readGaussMeasurement();

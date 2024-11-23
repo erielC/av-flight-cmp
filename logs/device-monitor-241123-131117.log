@@ -1,0 +1,4 @@
+[ERROR] Magnetometer: I2C Device Check failed.
+[ERROR] Main IMU: I2C Device Check failed.
+[ERROR] Barometer: I2C Device Check failed.
+[ERROR] Initialization failed. Stopping.
