@@ -12,7 +12,7 @@ void setup()
   // Perform one-time sensor checks
   if (!InitializeAndCheckSensors())
   {
-    Serial.println("[ERROR] Initialization failed. Stopping.");
+    Serial.println("[CRITICAL] One or more critical sensors failed. Halting...");
     while (true)
       ; // Halt on failure
   }
