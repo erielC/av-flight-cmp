@@ -21,6 +21,16 @@ enum RocketState
   LANDED,                // Final state after landing
 };
 
+enum CriticalIndex
+{
+  MAIN_IMU,
+  BAROMETER
+}; // Indices for critical sensors
+enum NonCriticalIndex
+{
+  MAGNETOMETER
+}; // Indices for non-critical sensors
+
 // Function prototypes
 bool InitializeAndCheckSensors();
 
