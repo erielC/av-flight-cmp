@@ -129,7 +129,7 @@ bool BarometerVerifyTemperature()
 
 bool BarometerVerifyConnection()
 {
-  if (barometer.verifyConnection())
+  if (barometer.verifyConnection(BAROMETER_ADDRESS))
     return logStatus("Barometer", "I2C Connection", true), true;
 
   return logStatus("Barometer", "I2C Connection", false), false;
