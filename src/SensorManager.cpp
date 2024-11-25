@@ -5,6 +5,9 @@
 #include <ASM330LHHSensor.h>                    // Main IMU Library
 #include <Adafruit_BMP3XX.h>                    // Barometer Library
 
+bool criticalSensors[2];
+bool nonCriticalSensors[1];
+
 // Sensor objects
 SFE_MMC5983MA magnetometer;
 ASM330LHHSensor mainIMU(&Wire, ASM330LHH_I2C_ADD_L);
@@ -138,9 +141,37 @@ bool BarometerVerifyConnection()
 // Overall Initialization and Check
 bool InitializeAndCheckSensors()
 {
-  bool magnetometer = PowerMagnetometer() && MagnetometerVerifyTemperature() && MagnetometerVerifyConnection();
-  bool imu = PowerMainIMU() && MainIMUVerifyTemperature() && MainIMUVerifyConnection();
-  bool barometer = PowerBarometer() && BarometerVerifyTemperature() && BarometerVerifyConnection();
+  // bool magnetometer = PowerMagnetometer() && MagnetometerVerifyTemperature() && MagnetometerVerifyConnection();
+  // bool imu = PowerMainIMU() && MainIMUVerifyTemperature() && MainIMUVerifyConnection();
+  // bool barometer = PowerBarometer() && BarometerVerifyTemperature() && BarometerVerifyConnection();
 
-  return magnetometer && imu && barometer;
+  // return magnetometer && imu && barometer;
+
+  criticalSensors[MAIN_IMU] = PowerMainIMU() && MainIMUVerifyTemperature() && MainIMUVerifyConnection();
+  criticalSensors[BAROMETER] = PowerBarometer() && BarometerVerifyTemperature() && BarometerVerifyConnection();
+
+  nonCriticalSensors[MAGNETOMETER] = PowerMagnetometer() && MagnetometerVerifyTemperature() && MagnetometerVerifyConnection();
+
+  // Log the status of critical sensors
+  Serial.println("[INFO] Critical Sensor Status:");
+  Serial.print("  Main IMU: ");
+  Serial.println(criticalSensors[MAIN_IMU] ? "SUCCESS" : "FAILURE");
+  Serial.print("  Barometer: ");
+  Serial.println(criticalSensors[BAROMETER] ? "SUCCESS" : "FAILURE");
+
+  // Log the status of non-critical sensors
+  Serial.println("[INFO] Non-Critical Sensor Status:");
+  Serial.print("  Magnetometer: ");
+  Serial.println(nonCriticalSensors[MAGNETOMETER] ? "SUCCESS" : "FAILURE");
+
+  // Check if all critical sensors passed
+  for (int i = 0; i < 2; i++)
+  {
+    if (!criticalSensors[i])
+    {
+      return false; // Halt if any critical sensor fails
+    }
+  }
+
+  return true; // All critical sensors are operational
 }
