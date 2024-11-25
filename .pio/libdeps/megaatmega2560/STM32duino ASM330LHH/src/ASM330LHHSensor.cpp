@@ -1002,13 +1002,11 @@ ASM330LHHStatusTypeDef ASM330LHHSensor::verifyConnection(uint8_t mainIMUAddress)
 
   if (Wire.endTransmission() == 0)
   {
-    Serial.println("Magnetometer connected successfully");
     return ASM330LHH_OK;
     // Connection is good; proceed with further operations if necessary
   }
   else
   {
-    Serial.println("Failed to connect to the magnetometer");
     return ASM330LHH_ERROR;
     // Connection failed; handle the error (e.g., retry or enter a safe state)
   }

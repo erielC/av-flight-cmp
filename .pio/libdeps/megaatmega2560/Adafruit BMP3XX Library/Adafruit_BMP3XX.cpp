@@ -456,13 +456,11 @@ bool Adafruit_BMP3XX::verifyConnection(uint8_t BMP_ADDRESS)
 
   if (Wire.endTransmission() == 0)
   {
-    Serial.println("BMP390 Barometer connected suaddressccessfully");
     return true;
     // Connection is good; proceed with further operations if necessary
   }
   else
   {
-    Serial.println("Failed to connect to the barometer");
     return false;
     // Connection failed; handle the error (e.g., retry or enter a safe state)
   }
