@@ -2,6 +2,7 @@
 
 #include <Arduino.h>
 #include <Wire.h>
+#include <Adafruit_I2CDevice.h>
 #include <SparkFun_MMC5983MA_Arduino_Library.h>
 
 //////////////////////// *** OBJECT  FUNCTIONS *** //////////////////////////////////
@@ -51,8 +52,8 @@ void setup()
     Serial.println("MMC5983MA did not respond - check your wiring. Freezing.");
 
     // The reason that this is an infinite while loop is to basically freeze the program to prevent it from running if the device isnt good to go
-    while (true)
-      ;
+    // while (true)
+    //   ;
   }
 
   // Soft reset operation resets the sensor's internal registers and state without needing to power cycle the entire device, ensuring that the sensor is in a known good state for operation.
@@ -72,7 +73,7 @@ void loop()
     lastMeasurementTime = millis();
 
     // Perform measurements
-    magnetometer.readTemperature(); // boolean value
+    magnetometer.verifyTemperature(); // boolean value
     magnetometer.verifyConnection(MAGNETOMETER_ADDRESS);
   }
 
