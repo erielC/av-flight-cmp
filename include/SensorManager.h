@@ -34,14 +34,17 @@ enum NonCriticalIndex
 // Function prototypes
 bool InitializeAndCheckSensors();
 
+// MMC5983 Magnetometer
 bool PowerMagnetometer();
 bool MagnetometerVerifyTemperature();
 bool MagnetometerVerifyConnection();
 
+// ASM330LHH Main IMU
 bool PowerMainIMU();
 bool MainIMUVerifyTemperature();
 bool MainIMUVerifyConnection();
 
+// BMP390 Barometer
 bool PowerBarometer();
 bool BarometerVerifyTemperature();
 bool BarometerVerifyConnection();
