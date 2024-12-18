@@ -45,7 +45,7 @@ bool isDeviceConnected(uint8_t address)
 bool PowerMagnetometer()
 {
   if (!isDeviceConnected(MAGNETOMETER_ADDRESS))
-    return logStatus("Magnetometer", "I2C Start Device Check", false), false;
+    return logStatus("Magnetometer", "I2C Start Device Check (Power Up Function)", false), false;
 
   if (magnetometer.begin())
   {
@@ -76,7 +76,7 @@ bool MagnetometerVerifyConnection()
 bool PowerMainIMU()
 {
   if (!isDeviceConnected(MAIN_IMU_ADDRESS))
-    return logStatus("Main IMU", "I2C Start Device Check", false), false;
+    return logStatus("Main IMU", "I2C Start Device Check (Power Up Function)", false), false;
 
   if (mainIMU.begin() == ASM330LHH_OK)
   {
@@ -108,7 +108,7 @@ bool MainIMUVerifyConnection()
 bool PowerBarometer()
 {
   if (!isDeviceConnected(BAROMETER_ADDRESS))
-    return logStatus("Barometer", "I2C Start Device Check", false), false;
+    return logStatus("Barometer", "I2C Start Device Check (Power Up Function)", false), false;
 
   if (barometer.begin_I2C(BAROMETER_ADDRESS))
   {
