@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <Wire.h>
 #include "SensorManager.h"
-// test
+
 RocketState currentState = INIT_AND_SYSTEM_CHECK;
 
 void setup()
