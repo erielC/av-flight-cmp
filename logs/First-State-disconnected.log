@@ -1,9 +1,0 @@
-[ERROR] Main IMU: I2C Start Device Check (Power Up Function) failed.
-[ERROR] Barometer: I2C Start Device Check (Power Up Function) failed.
-[ERROR] Magnetometer: I2C Start Device Check (Power Up Function) failed.
-[INFO] Critical Sensor Status:
-  Main IMU: FAILURE
-  Barometer: FAILURE
-[INFO] Non-Critical Sensor Status:
-  Magnetometer: FAILURE
-[CRITICAL] One or more critical sensors failed. Halting...
