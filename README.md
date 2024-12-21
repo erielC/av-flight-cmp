@@ -47,3 +47,38 @@ This repository is the Vinson main flight computer code for the arduino nano tha
   <li>Unless your testing the code DO NOT place anything inside the test folder it will cause an error</li>
   <li>Any header files that you have written place them into the include folder as platformIO determines that's where the header files go</li>
 </ul>
+
+# Commenting Standards
+
+This project uses C/Arduino code for embedded systems, and we adhere to a consistent commenting style to keep the codebase clear, maintainable, and easy to navigate. We recommend using [Doxygen](https://www.doxygen.nl/) style comments for functions, and simple inline comments for single-line notes.
+
+## 1. Function-Level Comments
+
+- **Format:** Use Doxygen-style comments (`/** ... */`) before each function.
+- **Content:**
+  - Briefly describe the function’s purpose, parameters, and return values.
+  - Use `@brief` to summarize the function at a high level.
+  - Use `@param` and `@return` tags to document function inputs/outputs.
+  - For any known issues, planned work, or bugs, use `TODO(#issueNumber)` or `FIXME(#issueNumber)`.
+  - Use `NOTE(name):` to highlight non-actionable observations or temporary conditions.
+
+**Example:**
+
+```c
+/**
+ * @brief Fetches data from a sensor and processes the result.
+ *
+ * Reads from the specified sensor pin, applies filtering, and returns the
+ * processed value. This function is non-blocking.
+ *
+ * @param sensorPin The Arduino analog pin number where the sensor is connected.
+ * @return The filtered sensor reading as an integer.
+ *
+ * NOTE(alice): Currently using a simple moving average filter. See #45 for a discussion on implementing a Kalman filter.
+ * TODO(#101): Integrate a calibration routine to improve accuracy.
+ * FIXME(#102): Handle sensor saturation conditions more gracefully.
+ */
+int readAndProcessSensor(int sensorPin) {
+    // ...
+}
+```
