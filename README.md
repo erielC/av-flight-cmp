@@ -51,10 +51,11 @@ _The SparkFun Humidity sensor library can be used if the Adafruit one proves too
 
 ### GUIDELINES for Setting up Platform.IO
 
-- **Single Main File:** Ensure there is only **ONE** `.cpp` file containing `setup()` and `loop()` in your `src` directory. Multiple files with these functions will cause compilation errors.
+- **Single Main File:** Ensure there is only **ONE** `.cpp` file that contains `setup()` and `loop()` in your `src` directory. Multiple files with these functions will cause compilation errors.
 - **Archive Storage:** If files are not intended for compilation, place them in the `archive` folder since only the `src` folder is compiled.
 - **Test Folder Usage:** Unless you are actively testing, **do not** place any files in the `test` folder as it may cause errors.
 - **Include Folder:** Any custom header files should be placed in the `include` folder, which is recognized by PlatformIO as the location for header files.
+- **Corresponding File (.cpp) for Custom Header Files** for the `.cpp` file that corresponds to the header file in the `include` folder make sure that it is placed in the `src` folder so that platformIO can recognize it. 
 
 # Commenting Standards
 
@@ -89,4 +90,16 @@ This project uses C, C++, and Arduino code for embedded systems, and we adhere t
 int readAndProcessSensor(int sensorPin) {
     // ...
 }
+```
+## 2. Single-Level Comments (Above or Inline)
+```c
+/// This is a single-line Doxygen comment.
+/// It documents myOtherVariable.
+int myOtherVariable;
+```
+
+--- 
+
+```c
+int myVariable // Place the comment here
 ```
