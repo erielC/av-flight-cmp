@@ -112,3 +112,27 @@ int myVariable // Place the comment here
 ## 3. TODO Comments
 
 Use TODO(#issueNumber) to mark pending tasks, enhancements, or additional steps you plan to implement.
+**Conditions:**
+
+- If going to use in a function multi-line comment you can place it inside as noted in #1
+- If going to be single line then mark it as the following below:
+
+```c
+int calculateChecksum(uint8_t data[], size_t length) {
+    int checksum = 0;
+    for (size_t i = 0; i < length; i++) {
+        checksum += data[i]; // FIXME(#789): Handle overflow for large data arrays.
+    }
+    return checksum;
+}
+```
+
+or
+
+```c
+bool connectToWiFi(const char* ssid, const char* password) {
+    // FIXME(#456): Implement retry logic for failed connections.
+    bool success = WiFi.begin(ssid, password);
+    return success;
+}
+```
