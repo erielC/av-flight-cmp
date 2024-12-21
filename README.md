@@ -55,7 +55,7 @@ _The SparkFun Humidity sensor library can be used if the Adafruit one proves too
 - **Archive Storage:** If files are not intended for compilation, place them in the `archive` folder since only the `src` folder is compiled.
 - **Test Folder Usage:** Unless you are actively testing, **do not** place any files in the `test` folder as it may cause errors.
 - **Include Folder:** Any custom header files should be placed in the `include` folder, which is recognized by PlatformIO as the location for header files.
-- **Corresponding File (.cpp) for Custom Header Files** for the `.cpp` file that corresponds to the header file in the `include` folder make sure that it is placed in the `src` folder so that platformIO can recognize it. 
+- **Corresponding File (.cpp) for Custom Header Files** for the `.cpp` file that corresponds to the header file in the `include` folder make sure that it is placed in the `src` folder so that platformIO can recognize it.
 
 # Commenting Standards
 
@@ -91,15 +91,24 @@ int readAndProcessSensor(int sensorPin) {
     // ...
 }
 ```
+
 ## 2. Single-Level Comments (Above or Inline)
+
+- **Format:** Use Doxygen-style comments (`//`) before each comment.
+- **Content:**
+  - Briefly describe the purpose of the code
+  - (Case-by-case basis) Tag anyone who will work on this code
+
 ```c
 /// This is a single-line Doxygen comment.
 /// It documents myOtherVariable.
 int myOtherVariable;
 ```
 
---- 
-
 ```c
 int myVariable // Place the comment here
 ```
+
+## 3. TODO Comments
+
+Use TODO(#issueNumber) to mark pending tasks, enhancements, or additional steps you plan to implement.
